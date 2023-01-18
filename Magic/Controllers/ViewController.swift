@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var questionsArray: [UIImage] = []
+    
     private let magicLabel: UILabel = {
         let label = UILabel()
         label.text = "Ask Me Anything..."
@@ -45,12 +47,19 @@ class ViewController: UIViewController {
         
         view.backgroundColor = #colorLiteral(red: 0.3828315139, green: 0.8034424186, blue: 0.9958037734, alpha: 1)
         
+        for i in 1...5 {
+            if let image = UIImage(named: "ball\(i)") {
+                questionsArray.append(image)
+            }
+        }
+        
         setupViews()
         setConstraints()
     }
     
     @objc private func magicButtonTapped() {
-        print("Hello")
+        // Who           What    Value
+        magicUIImageView.image = questionsArray.randomElement()
     }
     
     private func setupViews() {
